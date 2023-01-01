@@ -8,6 +8,7 @@ class CreateSchool < ActiveRecord::Migration[7.0]
       t.string :mission
       t.string :vision
       t.string :core_value
+      t.string :email
 
       t.timestamps
     end
