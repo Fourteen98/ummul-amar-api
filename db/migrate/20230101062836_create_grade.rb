@@ -1,6 +1,6 @@
-class CreateClass < ActiveRecord::Migration[7.0]
+class CreateGrade < ActiveRecord::Migration[7.0]
   def change
-    create_table :classes do |t|
+    create_table :grades do |t|
       t.string :name
       t.integer :class_number
       t.integer :occupancy
