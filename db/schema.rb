@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_080424) do
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.date "date_created"
-    t.string "location"
+    t.string "address"
     t.string "motto"
     t.string "mission"
     t.string "vision"
