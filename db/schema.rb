@@ -14,23 +14,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_080424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "classes", force: :cascade do |t|
-    t.string "name"
-    t.integer "class_number"
-    t.integer "occupancy"
-    t.string "section"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "classes_subjects", id: false, force: :cascade do |t|
     t.bigint "class_id", null: false
     t.bigint "subject_id", null: false
-  end
-
-  create_table "classes_teachers", id: false, force: :cascade do |t|
-    t.bigint "teacher_id", null: false
-    t.bigint "class_id", null: false
   end
 
   create_table "examinations", force: :cascade do |t|
@@ -54,6 +40,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_080424) do
   create_table "examinations_subjects", id: false, force: :cascade do |t|
     t.bigint "subject_id", null: false
     t.bigint "examination_id", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string "name"
+    t.integer "class_number"
+    t.integer "occupancy"
+    t.string "section"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grades_teachers", id: false, force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "grade_id", null: false
   end
 
   create_table "join_subject_teachers", force: :cascade do |t|
@@ -100,11 +100,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_080424) do
 
   create_table "students", force: :cascade do |t|
     t.string "index_number"
-    t.bigint "class_id", null: false
+    t.bigint "grade_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["class_id"], name: "index_students_on_class_id"
+    t.index ["grade_id"], name: "index_students_on_grade_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -158,7 +158,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_080424) do
 
   add_foreign_key "examinations", "terms", column: "terms_id"
   add_foreign_key "student_profiles", "students"
-  add_foreign_key "students", "classes"
+  add_foreign_key "students", "grades"
   add_foreign_key "students", "users"
   add_foreign_key "teacher_profiles", "teachers"
   add_foreign_key "teachers", "users"
