@@ -2,6 +2,7 @@ class CreateStudentProfile < ActiveRecord::Migration[7.0]
   def change
     create_table :student_profiles do |t|
       t.string :address
+      t.string :photo
       t.string :identification_number
       t.string :date_of_birth
       t.string :date_of_addmission

@@ -7,7 +7,8 @@ class CreateExaminations < ActiveRecord::Migration[7.0]
       t.decimal :mid_term
       t.date :date_started
       t.date :date_ended
-      t.references :terms, null: false, foreign_key: true
+      t.integer :term
+      t.references :subject, null: false, foreign_key: true
 
       t.timestamps
     end

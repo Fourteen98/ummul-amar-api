@@ -1,6 +1,7 @@
 class CreateTeacherProfile < ActiveRecord::Migration[7.0]
   def change
     create_table :teacher_profiles do |t|
+      t.string :photo
       t.string :address
       t.string :identification_number
       t.date :date_of_birth
